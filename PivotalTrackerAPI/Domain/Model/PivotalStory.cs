@@ -371,7 +371,7 @@ namespace PivotalTrackerAPI.Domain.Model
     /// <returns>the stories for the project</returns>
     public static PivotalStory FetchStory(PivotalUser user, int projectId, string storyId)
     {
-      string url = String.Format("{0}/projects/{1}/story/{2}?token={3}", PivotalService.BaseUrl, projectId.ToString(), storyId, user.ApiToken);
+      string url = String.Format("{0}/projects/{1}/stories/{2}?token={3}", PivotalService.BaseUrl, projectId.ToString(), storyId, user.ApiToken);
       XmlDocument xmlDoc = PivotalService.GetData(url);
       PivotalStory story = SerializationHelper.DeserializeFromXmlDocument<PivotalStory>(xmlDoc);
       return story;
@@ -449,7 +449,7 @@ namespace PivotalTrackerAPI.Domain.Model
     /// <returns>The updated story instance</returns>
     public static PivotalStory UpdateStory(PivotalUser user, string projectId, PivotalStory story)
     {
-      string url = String.Format("{0}/projects/{1}/story/{2}?token={3}", PivotalService.BaseUrl, projectId, story.Id, user.ApiToken);
+      string url = String.Format("{0}/projects/{1}/stories/{2}?token={3}", PivotalService.BaseUrl, projectId, story.Id, user.ApiToken);
       XmlDocument xml = SerializationHelper.SerializeToXmlDocument<PivotalStory>(story);
       string storyXml = PivotalService.CleanXmlForSubmission(xml, "//story", ExcludeNodesOnSubmit, true);
       XmlDocument response = PivotalService.SubmitData(url, storyXml, ServiceMethod.PUT);
@@ -482,7 +482,7 @@ namespace PivotalTrackerAPI.Domain.Model
     /// <returns>The story that was deleted</returns>
     public static PivotalStory DeleteStory(PivotalUser user, string projectId, PivotalStory story)
     {
-      string url = String.Format("{0}/projects/{1}/story/{2}?token={3}", PivotalService.BaseUrl, projectId, story.Id, user.ApiToken);
+      string url = String.Format("{0}/projects/{1}/stories/{2}?token={3}", PivotalService.BaseUrl, projectId, story.Id, user.ApiToken);
       XmlDocument xml = SerializationHelper.SerializeToXmlDocument<PivotalStory>(story);
       string storyXml = PivotalService.CleanXmlForSubmission(xml, "//story", ExcludeNodesOnSubmit, true);
       XmlDocument response = PivotalService.SubmitData(url, storyXml, ServiceMethod.DELETE);

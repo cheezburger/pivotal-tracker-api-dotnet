@@ -154,7 +154,7 @@ namespace PivotalTrackerAPI.Domain.Model
     /// <returns></returns>
     public static IList<PivotalTask> FetchTasks(PivotalUser user, int projectId, int storyId, string filter)
     {
-      string url = String.Format("{0}/projects/{1}/story/{2}/tasks?token={3}", PivotalService.BaseUrl, projectId, storyId, user.ApiToken);
+      string url = String.Format("{0}/projects/{1}/stories/{2}/tasks?token={3}", PivotalService.BaseUrl, projectId, storyId, user.ApiToken);
       if (!string.IsNullOrEmpty(filter))
         url += "&" + filter;
       XmlDocument xmlDoc = PivotalService.GetData(url);
@@ -194,7 +194,7 @@ namespace PivotalTrackerAPI.Domain.Model
     /// <returns>The updated task instance</returns>
     public static PivotalTask UpdateTask(PivotalUser user, int projectId, int storyId, PivotalTask task)
     {
-      string url = String.Format("{0}/projects/{1}/story/{2}/tasks/{3}?token={4}", PivotalService.BaseUrl, projectId, storyId, task.TaskId.GetValueOrDefault().ToString(), user.ApiToken);
+      string url = String.Format("{0}/projects/{1}/stories/{2}/tasks/{3}?token={4}", PivotalService.BaseUrl, projectId, storyId, task.TaskId.GetValueOrDefault().ToString(), user.ApiToken);
 
       XmlDocument xml = SerializationHelper.SerializeToXmlDocument<PivotalTask>(task);
 
@@ -232,7 +232,7 @@ namespace PivotalTrackerAPI.Domain.Model
     /// <returns></returns>
     public static PivotalTask DeleteTask(PivotalUser user, int projectId, int storyId, PivotalTask task)
     {
-      string url = String.Format("{0}/projects/{1}/story/{2}/task/{3}?token={4}", PivotalService.BaseUrl, projectId, storyId, task.TaskId.GetValueOrDefault().ToString(), user.ApiToken);
+      string url = String.Format("{0}/projects/{1}/stories/{2}/task/{3}?token={4}", PivotalService.BaseUrl, projectId, storyId, task.TaskId.GetValueOrDefault().ToString(), user.ApiToken);
 
       XmlDocument xml = SerializationHelper.SerializeToXmlDocument<PivotalTask>(task);
 

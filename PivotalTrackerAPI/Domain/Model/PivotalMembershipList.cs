@@ -24,7 +24,7 @@ namespace PivotalTrackerAPI.Domain.Model
     /// Constructor
     /// </summary>
     /// <param name="members">The members associated with the group</param>
-    public PivotalMembershipList(IList<PivotalMembership> members)
+    public PivotalMembershipList(List<PivotalMembership> members)
     {
       Memberships = members;
     }
