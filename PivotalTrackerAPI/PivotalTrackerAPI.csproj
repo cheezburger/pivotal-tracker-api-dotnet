@@ -37,6 +37,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Release\PivotalTrackerAPI.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -61,6 +62,8 @@
     <Compile Include="Domain\Model\PivotalIterationList.cs" />
     <Compile Include="Domain\Model\PivotalMembership.cs" />
     <Compile Include="Domain\Model\PivotalMembershipList.cs" />
+    <Compile Include="Domain\Model\PivotalNote.cs" />
+    <Compile Include="Domain\Model\PivotalNoteList.cs" />
     <Compile Include="Domain\Model\PivotalPerson.cs" />
     <Compile Include="Domain\Model\PivotalProject.cs" />
     <Compile Include="Domain\Model\PivotalProjectList.cs" />

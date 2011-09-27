@@ -325,6 +325,13 @@ namespace PivotalTrackerAPI.Domain.Model
     [XmlIgnore]
     public IList<PivotalTask> Tasks { get; set; }
 
+    /// <summary>
+    /// The cached list of notes for the story.  Be sure to use LoadNotes before calling this.  Once that method is called, use this property to access previously retrieved tasks
+    /// </summary>
+    /// <remarks>If you set this property and intend to save it, you have to then iterate the collection of notes and call add yourself or set the option when creating the story</remarks>
+    [XmlIgnore]
+    public IList<PivotalNote> Notes { get; set; }
+
     #endregion
 
     #endregion
@@ -390,6 +397,21 @@ namespace PivotalTrackerAPI.Domain.Model
     {
       Tasks = PivotalTask.FetchTasks(user, ProjectId.GetValueOrDefault(), Id.GetValueOrDefault(), "");
       return Tasks;
+    }
+
+    #endregion
+
+    #region Note Operations
+
+    /// <summary>
+    /// Updates the cache of tasks for the story and returns the list
+    /// </summary>
+    /// <param name="user">The user to get the ApiToken from</param>
+    /// <returns></returns>
+    public IList<PivotalNote> LoadNotes(PivotalUser user)
+    {
+        Notes = PivotalNote.FetchNotes(user, ProjectId.GetValueOrDefault(), Id.GetValueOrDefault(), "");
+        return Notes;
     }
 
     #endregion
